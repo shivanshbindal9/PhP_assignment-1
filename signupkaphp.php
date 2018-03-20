@@ -44,24 +44,24 @@ function test_input($data) {
 
 //backend validations 
 
-if (preg_match('/^[A-Za-z\s0-9\_]{1,}$/i' ,$uname) && preg_match('/^([\w-]+(\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,})\.([a-z]{2,}(\.[a-z]{2})?)$/i',$email ) && preg_match('/^(0|91|\+91){0,1}[\-\s\.]{0,1}[7-9]{1}[0-9]{4}[-\s\.]{0,1}[0-9]{5}$/ ' ,$phone) && preg_match('/^[A-Za-z\s]{1,}$/i ' , $name) && preg_match('/^[0-9]{1,2}$/ ' , $age) && preg_match('/^(male|female)$/ ' ,$gender) && $pass!="" && $pass==$rpass )  
+if (preg_match('/^[A-Za-z\s0-9\_]{1,}$/i' ,$uname) && preg_match('/^([\w-]+(\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,})\.([a-z]{2,}(\.[a-z]{2})?)$/i',$email ) && preg_match('/^(0|91|\+91){0,1}[\-\s\.]{0,1}[7-9]{1}[0-9]{4}[-\s\.]{0,1}[0-9]{5}$/ ' ,$phone) && preg_match('/^[A-Za-z\s]{1,}$/i ' , $name) && ((preg_match('/^[0-9]{1,2}$/ ' , $age))||$age=="") && preg_match('/^(male|female)$/ ' ,$gender) && $pass!="" && $pass==$rpass )  
 
 {
-  $sql = "insert into harshit_profile(username,email,gender,mobile,name,age) values('$uname','$email','$gender','$phone','$name','$age')";
+  $sql = "insert into harshit_profile(username,email,gender,mobile,name,age) values('".$uname."','".$email."','".$gender."','".$phone."','".$name."','".$age."')";
   $result = $conn->query($sql); 
   if($result === TRUE){echo "Profile Data Uploaded in the Database";}
 
-  $sql = "insert into harshit_passwords(username,email,passkey) values('$uname','$email','$pass')";
+  $sql = "insert into harshit_passkeys(username,email,passkey) values('$uname','$email','$pass')";
   $result = $conn->query($sql);
   if ($result === TRUE) {
     echo "Passkeys  Updated in the database";
-    header('Location: login.html');
+    header('Location: login.php');
   }
 }
 else
 echo "Data Not Uploaded, Check the Validations";
 
-echo "<a href='login.html'>Jump back to MAin Page</a>"; 
+echo "<a href='login.php'>Jump back to MAin Page</a>"; 
 ?>
 <script>console.log("hello2")</script>;
 

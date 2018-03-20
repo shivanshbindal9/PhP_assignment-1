@@ -23,7 +23,11 @@ function ageval() {
     var age = document.getElementById("age").value;
       console.log(age)
             var ageregex=/^[0-9]{1,2}$/;
-        if(!ageregex.test(age))
+        if(age === NULL)
+          return true;
+        else
+        {
+      if(!ageregex.test(age))
             {
                   document.getElementById("age-error").innerHTML = "Please Enter a Valid Age";
                       return false;
@@ -32,7 +36,7 @@ function ageval() {
                 document.getElementById("age-error").innerHTML = "correct";
                     return true;
                       }
-
+        }
 }
 
 function genval() {
